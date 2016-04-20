@@ -45,14 +45,14 @@ public class ConfigurationMap extends TreeMap<String, String> {
      */
 
     public void addPropertyFile(Reader reader) throws IOException {
+        Properties p = new Properties();
         try (BufferedReader bufferedReader = new BufferedReader(reader)) {
-            Properties p = new Properties();
             p.load(bufferedReader);
-            for (Map.Entry<Object, Object> entry : p.entrySet()) {
-                String key = String.valueOf(entry.getKey());
-                String value = String.valueOf(entry.getValue()).trim();
-                this.put(key, value);
-            }
+        }
+        for (Map.Entry<Object, Object> entry : p.entrySet()) {
+            String key = String.valueOf(entry.getKey());
+            String value = String.valueOf(entry.getValue()).trim();
+            this.put(key, value);
         }
     }
 }
