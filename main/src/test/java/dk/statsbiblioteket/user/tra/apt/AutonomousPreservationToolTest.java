@@ -51,12 +51,12 @@ public class AutonomousPreservationToolTest {
         Assert.assertEquals("x1", F1.apply("x").findFirst().get());
     }
 
-    @Test(timeout = 10000)
+    @Test(timeout = 60000)
     public void twoParallelFlows() throws InterruptedException {
         Map<Set<String>, LinkedBlockingQueue<Stream<String>>> queueMap;
         queueMap = new AutopopulatingHashMap<>(key -> new LinkedBlockingQueue<>());
 
-        final Set<String> eventSet1 =  Collections.unmodifiableSet(new TreeSet<>(Arrays.asList("1")));
+        final Set<String> eventSet1 = Collections.unmodifiableSet(new TreeSet<>(Arrays.asList("1")));
         final Set<String> eventSet2 = Collections.unmodifiableSet(new TreeSet<>(Arrays.asList("1", "2")));
 
 
@@ -68,8 +68,10 @@ public class AutonomousPreservationToolTest {
         List<Callable<Integer>> runnables = Arrays.asList(
                 () -> {
                     //System.err.println("2 ready");
-                    List<String> collect = queueMap.get(eventSet2).take().flatMap(k -> Stream.of("2>" + k)).collect(Collectors.toList());
-                    finalResult.add(collect);
+                    List<String> result = queueMap.get(eventSet2).take().flatMap(k -> Stream.of("2>" + k)).collect(Collectors.toList());
+                    Set eventSet = new TreeSet<>(eventSet2);
+                    eventSet.add("3");
+                    queueMap.get(eventSet).add(result.stream());
                     return 0;
                 },
                 () -> {
@@ -83,8 +85,17 @@ public class AutonomousPreservationToolTest {
 
         // need mechanism to detect if runnable crashes
         ExecutorService executor = Executors.newCachedThreadPool();
-        List<Future<Integer>> z = executor.invokeAll(runnables);
-        Assert.assertEquals(finalResult.get(0), Arrays.asList("2>1>1", "2>1>2", "2>1>3"));
+        List<Future<Integer>> z = executor.invokeAll(runnables, 5, TimeUnit.SECONDS);
+        System.out.println(z);
+        // See if any exceptions were thrown.
+        for (Future future : z) {
+            try {
+                future.get();
+            } catch (Exception e) {
+                throw new RuntimeException(future.toString(), e);  // how to do with thread dump?
+            }
+        }
+        Assert.assertEquals(queueMap.get(new TreeSet<>(Arrays.asList("3", "1", "2"))).take().collect(Collectors.toList()), Arrays.asList("2>1>1", "2>1>2", "2>1>3"));
 
     }
 
