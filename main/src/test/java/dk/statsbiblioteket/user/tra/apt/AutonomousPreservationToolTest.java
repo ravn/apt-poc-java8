@@ -86,7 +86,6 @@ public class AutonomousPreservationToolTest {
         // need mechanism to detect if runnable crashes
         ExecutorService executor = Executors.newCachedThreadPool();
         List<Future<Integer>> z = executor.invokeAll(runnables, 5, TimeUnit.SECONDS);
-        System.out.println(z);
         // See if any exceptions were thrown.
         for (Future future : z) {
             try {
