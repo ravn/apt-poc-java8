@@ -3,10 +3,7 @@ package dk.statsbiblioteket.user.tra.apt;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 import java.util.concurrent.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -54,48 +51,42 @@ public class AutonomousPreservationToolTest {
         Assert.assertEquals("x1", F1.apply("x").findFirst().get());
     }
 
-    @Test
+    @Test(timeout = 10000)
     public void twoParallelFlows() throws InterruptedException {
-        LinkedBlockingQueue<Stream<String>> queue1 = new LinkedBlockingQueue<Stream<String>>();
-        LinkedBlockingQueue<Stream<String>> queue2 = new LinkedBlockingQueue<Stream<String>>();
+        Map<Set<String>, LinkedBlockingQueue<Stream<String>>> queueMap;
+        queueMap = new AutopopulatingHashMap<>(key -> new LinkedBlockingQueue<>());
 
-        queue1.add(Arrays.asList("1", "2", "3").stream());
+        final Set<String> eventSet1 =  Collections.unmodifiableSet(new TreeSet<>(Arrays.asList("1")));
+        final Set<String> eventSet2 = Collections.unmodifiableSet(new TreeSet<>(Arrays.asList("1", "2")));
 
 
-        List<List<String>> result2 = new ArrayList<List<String>>();
+        queueMap.get(eventSet1).add(Arrays.asList("1", "2", "3").stream());
+
+
+        List<List<String>> finalResult = new ArrayList<List<String>>();
 
         List<Callable<Integer>> runnables = Arrays.asList(
                 () -> {
-                    System.err.println("2 ready");
-                    List<String> collect = queue2.take().flatMap(k -> Stream.of("2>" + k)).collect(Collectors.toList());
-                    result2.add(collect);
-                    System.err.println("collect = " +collect);
+                    //System.err.println("2 ready");
+                    List<String> collect = queueMap.get(eventSet2).take().flatMap(k -> Stream.of("2>" + k)).collect(Collectors.toList());
+                    finalResult.add(collect);
                     return 0;
                 },
                 () -> {
-                    System.err.println("1 ready");
-                    List<String> result = queue1.take().flatMap(k -> Stream.of("1>" + k)).collect(Collectors.toList());
-                    queue2.add(result.stream());
-                    System.err.println("result = " +result);
+                    //System.err.println("1 ready");
+                    List<String> result = queueMap.get(eventSet1).take().flatMap(k -> Stream.of("1>" + k)).collect(Collectors.toList());
+                    Set eventSet = new TreeSet<>(eventSet1);
+                    eventSet.add("2");
+                    queueMap.get(eventSet).add(result.stream());
                     return 0;
                 });
 
+        // need mechanism to detect if runnable crashes
         ExecutorService executor = Executors.newCachedThreadPool();
         List<Future<Integer>> z = executor.invokeAll(runnables);
-        Assert.assertEquals(result2.get(0), Arrays.asList("2>1>1", "2>1>2", "2>1>3"));
-//
-//    List<String> in = Arrays.asList("1", "2", "3");
-//    try(
-//    Stream<String> stream = in.stream()
-//    )
-//
-//    {
-//        @SuppressWarnings("all")
-//        List<String> result = stream.flatMap(k -> Stream.of(k)).collect(Collectors.toList());
-//        Assert.assertEquals(in, result);
-//        queue.add(result.stream()); //System.err.println("<< " + new Date());
-//    }
-}
+        Assert.assertEquals(finalResult.get(0), Arrays.asList("2>1>1", "2>1>2", "2>1>3"));
+
+    }
 
 
 }

@@ -40,7 +40,7 @@ class MainModule {
     }
 
 
-    //@Singleton
+    @Singleton
     @Provides
     Configuration provideConfiguration() {
         Configuration configuration = new Configuration();

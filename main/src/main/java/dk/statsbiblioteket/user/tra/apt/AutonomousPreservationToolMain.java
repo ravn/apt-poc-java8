@@ -36,7 +36,7 @@ public class AutonomousPreservationToolMain implements Callable<Integer> {
         if (args.length > 0) {
             configurationMap.addPropertyFile(new FileReader(args[0]));
         }
-        AutonomousPreservationToolComponent component = DaggerAutonomousPreservationToolComponent.builder().build();
+        //AutonomousPreservationToolComponent component = DaggerAutonomousPreservationToolComponent.builder().build();
 
         staticConfigurationMap = configurationMap;
 
