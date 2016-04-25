@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -22,7 +23,7 @@ public class RepositoryTest {
         Map<Item, Set<Event>> eventMap = new HashMap<>();
 
         public Stream<Item> query(Set<String> set) {
-            return eventMap.entrySet().stream().filter(e -> e.getValue().equals(set)).map(e -> e.getKey());
+            return eventMap.entrySet().stream().filter(e -> e.getValue().stream().map(v->v.getId()).collect(Collectors.toSet()).equals(set)).map(e -> e.getKey());
         }
 
         public Set<Event> add(Item key) {
