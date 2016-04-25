@@ -1,6 +1,7 @@
 package dk.statsbiblioteket.user.tra.apt;
 
 import dk.statsbiblioteket.user.tra.model.Event;
+import dk.statsbiblioteket.user.tra.model.Id;
 import dk.statsbiblioteket.user.tra.model.Item;
 import dk.statsbiblioteket.user.tra.model.Repository;
 import org.junit.Assert;
@@ -11,6 +12,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static java.util.stream.Collectors.toList;
+
 /**
  *
  */
@@ -20,22 +23,22 @@ public class RepositoryTest {
     Set<String> set2 = new TreeSet<>(Arrays.asList("1", "2"));
 
     class TestRepository implements Repository {
-        Map<Item, Set<Event>> eventMap = new HashMap<>();
+        Map<Item, Set<TestEvent>> eventMap = new HashMap<>();
 
         public Stream<Item> query(Set<String> set) {
-            return eventMap.entrySet().stream().filter(e -> e.getValue().stream().map(v->v.getId()).collect(Collectors.toSet()).equals(set)).map(e -> e.getKey());
+            return eventMap.entrySet().stream().filter(e -> e.getValue().stream().map(v -> v.getId()).collect(Collectors.toSet()).equals(set)).map(e -> e.getKey());
         }
 
-        public Set<Event> add(Item key) {
+        public Set<TestEvent> add(Item key) {
             return eventMap.put(key, new HashSet<>());
         }
 
-        public void add(Item key, Event event) {
+        public void add(Item key, TestEvent event) {
             eventMap.get(key).add(event);
         }
     }
 
-    class TestEvent implements Event {
+    class TestEvent implements Event, Id {
 
         private String id;
 
@@ -57,21 +60,27 @@ public class RepositoryTest {
     }
 
     @Test
-    public void test() {
-        Item item = new Item(){};
+    public void testTestRepositorySimple() {
+        Item item = new Item() {
+        };
 
+        List<Item> li = Arrays.asList(item);
+        List<Item> el = Collections.emptyList();
         repository.add(item);
-        Assert.assertEquals(1, repository.query(set0).count());
-        Assert.assertEquals(0, repository.query(set1).count());
-        Assert.assertEquals(0, repository.query(set2).count());
+        Assert.assertEquals(li, repository.query(set0).collect(toList()));
+        Assert.assertEquals(el, repository.query(set1).collect(toList()));
+        Assert.assertEquals(el, repository.query(set2).collect(toList()));
+        Assert.assertEquals(1, repository.eventMap.entrySet().size());
         repository.add(item, new TestEvent("1"));
-        Assert.assertEquals(0, repository.query(set0).count());
-        Assert.assertEquals(1, repository.query(set1).count());
-        Assert.assertEquals(0, repository.query(set2).count());
+        Assert.assertEquals(el, repository.query(set0).collect(toList()));
+        Assert.assertEquals(li, repository.query(set1).collect(toList()));
+        Assert.assertEquals(el, repository.query(set2).collect(toList()));
+        Assert.assertEquals(1, repository.eventMap.entrySet().size());
         repository.add(item, new TestEvent("2"));
-        Assert.assertEquals(0, repository.query(set0).count());
-        Assert.assertEquals(0, repository.query(set1).count());
-        Assert.assertEquals(1, repository.query(set2).count());
+        Assert.assertEquals(el, repository.query(set0).collect(toList()));
+        Assert.assertEquals(el, repository.query(set1).collect(toList()));
+        Assert.assertEquals(li, repository.query(set2).collect(toList()));
+        Assert.assertEquals(1, repository.eventMap.entrySet().size());
 
 
     }
