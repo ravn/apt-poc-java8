@@ -1,5 +1,6 @@
 package dk.statsbiblioteket.user.tra.apt;
 
+import dk.statsbiblioteket.user.tra.model.Task;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -28,7 +29,7 @@ public class AutonomousPreservationToolTest {
         }
     }
 
-    enum F implements AutonomousPreservationToolFunction<String, Stream<String>> {
+    enum F implements Task<String, String> {
         F1(s -> s + "1"),
         F2(s -> s + "2");
 
@@ -44,6 +45,8 @@ public class AutonomousPreservationToolTest {
         public Stream<String> apply(String s) {
             return Stream.of(f.apply(s));
         }
+
+
     }
 
     @Test
@@ -54,7 +57,7 @@ public class AutonomousPreservationToolTest {
     @Test(timeout = 60000)
     public void twoParallelFlows() throws InterruptedException {
         Map<Set<String>, LinkedBlockingQueue<Stream<String>>> queueMap;
-        queueMap = new AutopopulatingHashMap<>(key -> new LinkedBlockingQueue<>());
+        queueMap = new PrototypeLazyMap<>(key -> new LinkedBlockingQueue<>());
 
         final Set<String> eventSet1 = Collections.unmodifiableSet(new TreeSet<>(Arrays.asList("1")));
         final Set<String> eventSet2 = Collections.unmodifiableSet(new TreeSet<>(Arrays.asList("1", "2")));

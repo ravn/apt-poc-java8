@@ -4,11 +4,15 @@ package dk.statsbiblioteket.user.tra.apt;
 import java.util.HashMap;
 import java.util.function.Function;
 
-public class AutopopulatingHashMap<K, V> extends HashMap<K, V> {
+/**
+ * For now an unoptimized prototype for a Map which generates entries on demand.
+ */
+
+public class PrototypeLazyMap<K, V> extends HashMap<K, V> {
 
     final private Function<K, V> valueCreator;
 
-    AutopopulatingHashMap(Function<K, V> valueCreator) {
+    PrototypeLazyMap(Function<K, V> valueCreator) {
         this.valueCreator = valueCreator;
     }
 

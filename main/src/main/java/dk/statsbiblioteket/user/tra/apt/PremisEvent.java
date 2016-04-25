@@ -1,28 +1,38 @@
 package dk.statsbiblioteket.user.tra.apt;
 
+import dk.statsbiblioteket.user.tra.model.Event;
+import dk.statsbiblioteket.user.tra.model.Item;
+
 import java.time.Instant;
+import java.util.Objects;
 
 /**
  *
  */
-public class PremisEvent implements Event {
+public class PremisEvent<T extends Item> implements Event {
 
-    protected String eventId;
+    protected T belongsTo;
+    protected String id;
     protected String eventType;
     protected String details;
     protected Instant instant;  // Originally java.util.Date.
     protected boolean success;
 
-    public PremisEvent(String eventId, String eventType, String details, Instant instant, boolean success) {
-        this.eventId = eventId;
-        this.eventType = eventType;
-        this.details = details;
-        this.instant = instant;
+    public PremisEvent(T belongsTo, String id, String eventType, String details, Instant instant, boolean success) {
+        this.belongsTo = Objects.requireNonNull(belongsTo);
+        this.id = Objects.requireNonNull(id);
+        this.eventType = Objects.requireNonNull(eventType);
+        this.details = Objects.requireNonNull(details);
+        this.instant = Objects.requireNonNull(instant);
         this.success = success;
     }
 
-    public String getEventId() {
-        return eventId;
+    public T getBelongsTo() {
+        return belongsTo;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getEventType() {
