@@ -1,5 +1,4 @@
 package dk.statsbiblioteket.user.tra.model;
 
-public interface Repository {
-
+public interface Repository<V> {
 }
