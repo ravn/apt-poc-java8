@@ -2,11 +2,18 @@ package dk.statsbiblioteket.user.tra.apt;
 
 import dk.statsbiblioteket.user.tra.model.Item;
 
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.function.Function;
 
-public class EditionTask implements Function<Item, Boolean> {
+public class EditionTask implements Function<EditionItem, Long> {
+
     @Override
-    public Boolean apply(Item item) {
-        throw new RuntimeException("not yet");
+    public Long apply(EditionItem item) {
+        try {
+            return Files.list(item.getPath()).count();
+        } catch (Exception e) {
+            throw new RuntimeException(item.getPath().toString(), e);
+        }
     }
 }

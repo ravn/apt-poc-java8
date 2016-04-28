@@ -8,7 +8,7 @@ public class BatchTask implements Function<BatchItem, String> {
     @Override
     public String apply(BatchItem batchItem) {
         EditionTask editionTask = new EditionTask();
-        List<Boolean> result = batchItem.editionItems().map(editionTask).collect(Collectors.toList());
+        List<Long> result = batchItem.editionItems().map(editionTask).collect(Collectors.toList());
         return result.toString();
     }
 }
