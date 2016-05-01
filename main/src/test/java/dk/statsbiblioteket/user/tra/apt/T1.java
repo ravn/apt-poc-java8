@@ -62,11 +62,6 @@ public class T1 {
         }
 
         @Override
-        public String toString() {
-            return super.toString();
-        }
-
-        @Override
         public Stream<Stream<TestItem>> lookup(TestQuery query) {
             return Stream.of(Stream.of(new TestItem(this, "1")));
         }

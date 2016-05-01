@@ -3,11 +3,9 @@ package dk.statsbiblioteket.user.tra.apt;
 import dk.statsbiblioteket.user.tra.model.*;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Test;
 
 import java.util.*;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
