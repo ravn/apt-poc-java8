@@ -55,6 +55,11 @@ public class RepositoryTest {
 //            return eventMap.entrySet().stream().filter(e -> e.getValue().stream().map(v -> v.id()).collect(Collectors.toSet()).filter(set)).map(e -> e.getKey());
             return Stream.empty();
         }
+
+        @Override
+        public void add(Item item, Event event) {
+            // tmp
+        }
     }
 
     class TestItem implements Item, Id {
@@ -71,6 +76,7 @@ public class RepositoryTest {
         public String id() {
             return id;
         }
+
     }
 
     class TestEvent implements Event, Id {

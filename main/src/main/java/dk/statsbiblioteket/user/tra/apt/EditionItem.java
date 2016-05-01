@@ -1,6 +1,7 @@
 package dk.statsbiblioteket.user.tra.apt;
 
 
+import dk.statsbiblioteket.user.tra.model.Event;
 import dk.statsbiblioteket.user.tra.model.Item;
 
 import java.nio.file.Path;
@@ -15,4 +16,5 @@ public class EditionItem implements Item {
     public Path getPath() {
         return path;
     }
+
 }

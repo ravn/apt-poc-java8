@@ -8,3 +8,11 @@ TODO:
 * Write sample tests showing workflow.
 
 
+A task is responsible for handling a single Item, and
+store corresponding events on the item (which in turn
+knows how to register them in the repository), and
+return a value indicating to the caller how it went.
+
+Exceptions must be caught (so an uncaught exception mean shut the
+tool down).
+

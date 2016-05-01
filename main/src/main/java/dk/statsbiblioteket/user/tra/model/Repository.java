@@ -1,4 +1,5 @@
 package dk.statsbiblioteket.user.tra.model;
 
-public interface Repository<V> {
+public interface Repository {
+    void add(Item item, Event event);
 }

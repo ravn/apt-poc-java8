@@ -1,6 +1,7 @@
 package dk.statsbiblioteket.user.tra.apt;
 
 
+import dk.statsbiblioteket.user.tra.model.Event;
 import dk.statsbiblioteket.user.tra.model.Id;
 import dk.statsbiblioteket.user.tra.model.Item;
 
@@ -30,4 +31,5 @@ public class BatchItem implements Item {
             throw new RuntimeException("editionItems()", e);
         }
     }
+
 }
