@@ -10,7 +10,7 @@ public class AutonomousPreservationToolMain implements Callable<Integer> {
 
     public static final String USER_HOME = "user.home";
     public static final String USER_DIR = "user.dir";
-    final private String[] args;
+    private final String[] args;
 
     public AutonomousPreservationToolMain(String[] args) {
         this.args = args;

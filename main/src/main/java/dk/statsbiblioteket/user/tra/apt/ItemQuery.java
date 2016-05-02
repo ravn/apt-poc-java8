@@ -1,9 +1,6 @@
 package dk.statsbiblioteket.user.tra.apt;
 
-import java.nio.file.Path;
-import java.util.function.Predicate;
+import java.util.function.BiPredicate;
 
-public interface ItemQuery extends Predicate<Path> {
-    @Override
-    boolean test(Path path);
+public interface ItemQuery<I, E> extends BiPredicate<I, E> {
 }

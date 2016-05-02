@@ -10,8 +10,6 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static dk.statsbiblioteket.user.tra.apt.AutonomousPreservationToolTest.F.F1;
-
 /**
  *
  */
@@ -30,8 +28,18 @@ public class AutonomousPreservationToolTest {
     }
 
     enum F implements Task<String, String> {
-        F1(s -> s + "1"),
-        F2(s -> s + "2");
+        F1(s -> s + "1") {
+            @Override
+            public String apply(String s) {
+                return null;
+            }
+        },
+        F2(s -> s + "2") {
+            @Override
+            public String apply(String s) {
+                return null;
+            }
+        };
 
         // http://stackoverflow.com/a/26665697/53897
 
@@ -41,25 +49,25 @@ public class AutonomousPreservationToolTest {
             this.f = f;
         }
 
-        @Override
-        public Stream<String> apply(String s) {
-            return Stream.of(f.apply(s));
-        }
+        //@Override
+        //public Stream<String> apply(String s) {
+          //  return Stream.of(f.apply(s));
+        //}
 
 
     }
 
-    @Test
-    public void simpleEnumParallelRun() {
-        Assert.assertEquals("x1", F1.apply("x").findFirst().get());
-    }
+    //@Test
+  //  public void simpleEnumParallelRun() {
+  //      Assert.assertEquals("x1", F1.apply("x").findFirst().get());
+ //   }
 
     @Test(timeout = 60000)
     public void twoParallelFlows() throws InterruptedException {
         Map<Set<String>, LinkedBlockingQueue<Stream<String>>> queueMap;
         queueMap = new PrototypeLazyMap<>(key -> new LinkedBlockingQueue<>());
 
-        final Set<String> eventSet1 = Collections.unmodifiableSet(new TreeSet<>(Arrays.asList("1")));
+        final Set<String> eventSet1 = Collections.unmodifiableSet(new TreeSet<>(Collections.singletonList("1")));
         final Set<String> eventSet2 = Collections.unmodifiableSet(new TreeSet<>(Arrays.asList("1", "2")));
 
 

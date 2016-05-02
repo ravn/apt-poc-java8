@@ -1,38 +1,42 @@
 package dk.statsbiblioteket.user.tra.apt;
 
 import dk.statsbiblioteket.user.tra.model.Event;
-import dk.statsbiblioteket.user.tra.model.Id;
+import dk.statsbiblioteket.user.tra.model.Repository;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.function.BiFunction;
-import java.util.function.Function;
 
 import static java.util.stream.Collectors.toList;
 
 
 public class FileBackedMemoryRepositoryTest {
 
-    String root = "/Users/ravn/Downloads/llo/standard pakker til repo/avis/Fjerritslev avis/B400027132187-RT1";
+    // String root = "/Users/ravn/Downloads/llo/standard pakker til repo/avis/Fjerritslev avis/B400027132187-RT1";
+    String root = "/home/tra/ownCloud/2016-02-29/llo/standard pakker til repo/avis/Fjerritslev avis/B400027132187-RT1";
 
     @Test
     public void test1() throws Exception {
-        FileBackedMemoryRepository<TestFileItem, TestEvent> repository;
         Path rootPath = Paths.get(this.root);
-        BiFunction<Path, String, TestFileItem> pathFunction = (p, id) -> new TestFileItem(p, id);
-        repository = new FileBackedMemoryRepository(rootPath, pathFunction);
+
+        FileBackedMemoryRepository<TestFileItem, TestEvent> repository = null;
+        repository = new FileBackedMemoryRepository(rootPath, (p, id, repo) -> new TestFileItem((Path) p, (String) id, (Repository) repo));
 
         Assert.assertEquals("", repository.itemStream().collect(toList()));
     }
 
-    private class TestFileItem extends FileItem {
-        private final String id;
 
-        public TestFileItem(Path path, String id) {
+    private class TestFileItem extends FileItem {
+        private final Path path;
+        private final String id;
+        private final Repository repository;
+
+        public TestFileItem(Path path, String id, Repository repository) {
             super(path);
+            this.path = path;
             this.id = id;
+            this.repository = repository;
         }
 
         @Override
@@ -42,6 +46,6 @@ public class FileBackedMemoryRepositoryTest {
     }
 
 
-
-    private class TestEvent implements Event {}
+    private class TestEvent implements Event {
+    }
 }

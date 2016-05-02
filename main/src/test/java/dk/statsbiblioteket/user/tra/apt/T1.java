@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 public class T1 {
     @Test
     public void t1() throws Exception {
-        Repository repository = new TestRepository();
+        Add repository = new TestRepository();
 
         Stream<TestItem> stream = Stream.of(new TestItem(repository, "1"), new TestItem(repository, "2"));
 
@@ -19,10 +19,10 @@ public class T1 {
     }
 
     private class TestItem implements Item, Id, EventAdder<TestEvent> {
-        private final Repository repository;
+        private final Add repository;
         private final String id;
 
-        public TestItem(Repository repository, String id) {
+        public TestItem(Add repository, String id) {
             this.repository = repository;
             this.id = id;
         }
@@ -55,17 +55,19 @@ public class T1 {
         }
     }
 
-    private class TestRepository implements Repository, Lookup<TestQuery, TestItem> {
+    private class TestRepository<I extends TestItem, E extends TestEvent, Q> implements Repository<I, E, Q> {
         @Override
-        public void add(Item item, Event event) {
+        public void add(I item, E event) {
             System.out.println(item + " + " + event);
         }
 
         @Override
-        public Stream<Stream<TestItem>> lookup(TestQuery query) {
-            return Stream.of(Stream.of(new TestItem(this, "1")));
+        public Stream<I> query(Q query) {
+            return null;
         }
-    }
 
-    private class TestQuery {}
+//        @Override
+        //       public Stream<Stream<TestItem>> query(TestQuery query) {
+        //         return Stream.of(Stream.of(new TestItem(this, "1")));
+    }
 }

@@ -1,6 +1,9 @@
 package dk.statsbiblioteket.user.tra.model;
 
-public interface Repository<I extends Item, E extends Event> {
+import java.util.stream.Stream;
 
-    void add(I item, E event);
+/**
+ *
+ */
+public interface Repository<I extends Item, E, Q> extends Add<I, E>, Query<Q, Stream<I>> {
 }

@@ -10,7 +10,7 @@ import java.util.function.Function;
 
 public class PrototypeLazyMap<K, V> extends HashMap<K, V> {
 
-    final private Function<K, V> valueCreator;
+    private final Function<K, V> valueCreator;
 
     PrototypeLazyMap(Function<K, V> valueCreator) {
         this.valueCreator = valueCreator;

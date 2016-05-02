@@ -1,7 +1,8 @@
 package dk.statsbiblioteket.user.tra.apt;
 
-import java.io.*;
-import java.util.Arrays;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.Reader;
 import java.util.Map;
 import java.util.Properties;
 import java.util.TreeMap;
