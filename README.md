@@ -23,3 +23,5 @@ several events to the item.
 Exceptions must be caught (so an uncaught exception mean shut the tool
 down).
 
+http://www.nurkiewicz.com/2014/11/executorservice-10-tips-and-tricks.html
+http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/ExecutorCompletionService.html

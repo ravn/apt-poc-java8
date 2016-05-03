@@ -3,6 +3,7 @@ package dk.statsbiblioteket.user.tra.apt;
 import dk.statsbiblioteket.user.tra.model.Task;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.*;
@@ -19,7 +20,7 @@ public class MemoryRepositoryTest {
     public static final String E2 = "e2";
     public static final String E3 = "e3";
 
-    @Test(timeout = 60000L)
+    @Test(timeout = 10000L)
     public void simpleFlow() throws Exception {
         MemoryRepository repository = new MemoryRepository();
 
@@ -42,13 +43,24 @@ public class MemoryRepositoryTest {
         List<Callable<Boolean>> tasks = Arrays.asList(c1_12, c0_1, c12_123);
 
         ExecutorService executor = Executors.newCachedThreadPool();
-        Boolean z = executor.invokeAny(tasks, 10, TimeUnit.SECONDS);
 
-        executor.shutdown();
-        if (executor.awaitTermination(1, TimeUnit.SECONDS) == false) {
-            throw new RuntimeException("executor did not terminate");
+        CompletionService<Boolean> ecs = new ExecutorCompletionService<>(executor);
+        List<Future<Boolean>> futures = new ArrayList<Future<Boolean>>(tasks.size());
+
+        tasks.forEach(task -> futures.add(ecs.submit(task)));
+
+
+        System.out.println("---");
+
+        // when the first task exits, we're done.
+        System.out.println("=" + ecs.take().get());
+
+        // tell the rest to finish.
+        for (Future<Boolean> future : futures) {
+            System.out.println(">" + future.cancel(true));
         }
-        // Examnine result - for now just be happy :)
+
+        // Examine result - for now just be happy :)
 
     }
 
