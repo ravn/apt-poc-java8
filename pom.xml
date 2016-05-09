@@ -11,6 +11,7 @@
     <modules>
         <module>main</module>
         <module>it</module>
+        <module>tools</module>
     </modules>
 </project>
 
