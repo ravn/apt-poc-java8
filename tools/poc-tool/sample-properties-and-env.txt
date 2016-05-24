@@ -1,0 +1,120 @@
+/home/tra/gnu/jdk1.8.0_73/bin/java -Didea.launcher.port=7533 -Didea.launcher.bin.path=/home/tra/gnu/idea-IU-145.597.3/bin -Dfile.encoding=UTF-8 -classpath /home/tra/gnu/jdk1.8.0_73/jre/lib/charsets.jar:/home/tra/gnu/jdk1.8.0_73/jre/lib/deploy.jar:/home/tra/gnu/jdk1.8.0_73/jre/lib/ext/cldrdata.jar:/home/tra/gnu/jdk1.8.0_73/jre/lib/ext/dnsns.jar:/home/tra/gnu/jdk1.8.0_73/jre/lib/ext/jaccess.jar:/home/tra/gnu/jdk1.8.0_73/jre/lib/ext/jfxrt.jar:/home/tra/gnu/jdk1.8.0_73/jre/lib/ext/localedata.jar:/home/tra/gnu/jdk1.8.0_73/jre/lib/ext/nashorn.jar:/home/tra/gnu/jdk1.8.0_73/jre/lib/ext/sunec.jar:/home/tra/gnu/jdk1.8.0_73/jre/lib/ext/sunjce_provider.jar:/home/tra/gnu/jdk1.8.0_73/jre/lib/ext/sunpkcs11.jar:/home/tra/gnu/jdk1.8.0_73/jre/lib/ext/zipfs.jar:/home/tra/gnu/jdk1.8.0_73/jre/lib/javaws.jar:/home/tra/gnu/jdk1.8.0_73/jre/lib/jce.jar:/home/tra/gnu/jdk1.8.0_73/jre/lib/jfr.jar:/home/tra/gnu/jdk1.8.0_73/jre/lib/jfxswt.jar:/home/tra/gnu/jdk1.8.0_73/jre/lib/jsse.jar:/home/tra/gnu/jdk1.8.0_73/jre/lib/management-agent.jar:/home/tra/gnu/jdk1.8.0_73/jre/lib/plugin.jar:/home/tra/gnu/jdk1.8.0_73/jre/lib/resources.jar:/home/tra/gnu/jdk1.8.0_73/jre/lib/rt.jar:/home/tra/git/apt-poc-java8/tools/poc-tool/target/classes:/home/tra/gnu/idea-IU-145.597.3/lib/idea_rt.jar com.intellij.rt.execution.application.AppMain dk.statsbiblioteket.user.tra.apt_poc.poc_tool.Main
+Hello world - args = []
+CLUTTER_IM_MODULE: xim
+COMPIZ_BIN_PATH: /usr/bin/
+COMPIZ_CONFIG_PROFILE: ubuntu
+DBUS_SESSION_BUS_ADDRESS: unix:abstract=/tmp/dbus-hxTN97chSZ
+DEFAULTS_PATH: /usr/share/gconf/ubuntu.default.path
+DESKTOP_SESSION: ubuntu
+DISPLAY: :0
+GDMSESSION: ubuntu
+GDM_LANG: da
+GIO_LAUNCHED_DESKTOP_FILE: /home/tra/.local/share/applications/jetbrains-idea.desktop
+GIO_LAUNCHED_DESKTOP_FILE_PID: 4040
+GNOME_DESKTOP_SESSION_ID: this-is-deprecated
+GNOME_KEYRING_CONTROL:
+GNOME_KEYRING_PID:
+GPG_AGENT_INFO: /home/tra/.gnupg/S.gpg-agent:0:1
+GTK2_MODULES: overlay-scrollbar
+GTK_IM_MODULE: ibus
+GTK_MODULES: gail:atk-bridge:unity-gtk-module
+HOME: /home/tra
+IM_CONFIG_PHASE: 1
+INSTANCE:
+JOB: unity-settings-daemon
+LANG: da_DK.UTF-8
+LANGUAGE: da
+LD_LIBRARY_PATH: /home/tra/gnu/idea-IU-145.597.3/bin:
+LIBVIRT_DEFAULT_URI: qemu:///system
+LOGNAME: tra
+MANDATORY_PATH: /usr/share/gconf/ubuntu.mandatory.path
+NLSPATH: /usr/dt/lib/nls/msg/%L/%N.cat
+PATH: /home/tra/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+PWD: /home/tra
+QT4_IM_MODULE: xim
+QT_ACCESSIBILITY: 1
+QT_IM_MODULE: ibus
+QT_LINUX_ACCESSIBILITY_ALWAYS_ON: 1
+QT_QPA_PLATFORMTHEME: appmenu-qt5
+SESSION: ubuntu
+SESSIONTYPE: gnome-session
+SHELL: /bin/bash
+SHLVL: 0
+SSH_AUTH_SOCK: /run/user/1000/keyring/ssh
+UPSTART_EVENTS: xsession started
+UPSTART_INSTANCE:
+UPSTART_JOB: unity7
+UPSTART_SESSION: unix:abstract=/com/ubuntu/upstart-session/1000/2509
+USER: tra
+XAUTHORITY: /home/tra/.Xauthority
+XDG_CONFIG_DIRS: /etc/xdg/xdg-ubuntu:/usr/share/upstart/xdg:/etc/xdg
+XDG_CURRENT_DESKTOP: Unity
+XDG_DATA_DIRS: /usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
+XDG_GREETER_DATA_DIR: /var/lib/lightdm-data/tra
+XDG_RUNTIME_DIR: /run/user/1000
+XDG_SEAT: seat0
+XDG_SEAT_PATH: /org/freedesktop/DisplayManager/Seat0
+XDG_SESSION_DESKTOP: ubuntu
+XDG_SESSION_ID: c2
+XDG_SESSION_PATH: /org/freedesktop/DisplayManager/Session0
+XDG_SESSION_TYPE: x11
+XDG_VTNR: 7
+XFILESEARCHPATH: /usr/dt/app-defaults/%L/Dt
+XMODIFIERS: @im=ibus
+awt.toolkit: sun.awt.X11.XToolkit
+file.encoding: UTF-8
+file.encoding.pkg: sun.io
+file.separator: /
+idea.launcher.bin.path: /home/tra/gnu/idea-IU-145.597.3/bin
+idea.launcher.port: 7533
+java.awt.graphicsenv: sun.awt.X11GraphicsEnvironment
+java.awt.printerjob: sun.print.PSPrinterJob
+java.class.path: /home/tra/gnu/jdk1.8.0_73/jre/lib/charsets.jar:/home/tra/gnu/jdk1.8.0_73/jre/lib/deploy.jar:/home/tra/gnu/jdk1.8.0_73/jre/lib/ext/cldrdata.jar:/home/tra/gnu/jdk1.8.0_73/jre/lib/ext/dnsns.jar:/home/tra/gnu/jdk1.8.0_73/jre/lib/ext/jaccess.jar:/home/tra/gnu/jdk1.8.0_73/jre/lib/ext/jfxrt.jar:/home/tra/gnu/jdk1.8.0_73/jre/lib/ext/localedata.jar:/home/tra/gnu/jdk1.8.0_73/jre/lib/ext/nashorn.jar:/home/tra/gnu/jdk1.8.0_73/jre/lib/ext/sunec.jar:/home/tra/gnu/jdk1.8.0_73/jre/lib/ext/sunjce_provider.jar:/home/tra/gnu/jdk1.8.0_73/jre/lib/ext/sunpkcs11.jar:/home/tra/gnu/jdk1.8.0_73/jre/lib/ext/zipfs.jar:/home/tra/gnu/jdk1.8.0_73/jre/lib/javaws.jar:/home/tra/gnu/jdk1.8.0_73/jre/lib/jce.jar:/home/tra/gnu/jdk1.8.0_73/jre/lib/jfr.jar:/home/tra/gnu/jdk1.8.0_73/jre/lib/jfxswt.jar:/home/tra/gnu/jdk1.8.0_73/jre/lib/jsse.jar:/home/tra/gnu/jdk1.8.0_73/jre/lib/management-agent.jar:/home/tra/gnu/jdk1.8.0_73/jre/lib/plugin.jar:/home/tra/gnu/jdk1.8.0_73/jre/lib/resources.jar:/home/tra/gnu/jdk1.8.0_73/jre/lib/rt.jar:/home/tra/git/apt-poc-java8/tools/poc-tool/target/classes:/home/tra/gnu/idea-IU-145.597.3/lib/idea_rt.jar
+java.class.version: 52.0
+java.endorsed.dirs: /home/tra/gnu/jdk1.8.0_73/jre/lib/endorsed
+java.ext.dirs: /home/tra/gnu/jdk1.8.0_73/jre/lib/ext:/usr/java/packages/lib/ext
+java.home: /home/tra/gnu/jdk1.8.0_73/jre
+java.io.tmpdir: /tmp
+java.library.path: /home/tra/gnu/idea-IU-145.597.3/bin::/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib
+java.runtime.name: Java(TM) SE Runtime Environment
+java.runtime.version: 1.8.0_73-b02
+java.specification.name: Java Platform API Specification
+java.specification.vendor: Oracle Corporation
+java.specification.version: 1.8
+java.vendor: Oracle Corporation
+java.vendor.url: http://java.oracle.com/
+java.vendor.url.bug: http://bugreport.sun.com/bugreport/
+java.version: 1.8.0_73
+java.vm.info: mixed mode
+java.vm.name: Java HotSpot(TM) 64-Bit Server VM
+java.vm.specification.name: Java Virtual Machine Specification
+java.vm.specification.vendor: Oracle Corporation
+java.vm.specification.version: 1.8
+java.vm.vendor: Oracle Corporation
+java.vm.version: 25.73-b02
+line.separator:
+
+os.arch: amd64
+os.name: Linux
+os.version: 4.4.0-22-generic
+path.separator: :
+sun.arch.data.model: 64
+sun.boot.class.path: /home/tra/gnu/jdk1.8.0_73/jre/lib/resources.jar:/home/tra/gnu/jdk1.8.0_73/jre/lib/rt.jar:/home/tra/gnu/jdk1.8.0_73/jre/lib/sunrsasign.jar:/home/tra/gnu/jdk1.8.0_73/jre/lib/jsse.jar:/home/tra/gnu/jdk1.8.0_73/jre/lib/jce.jar:/home/tra/gnu/jdk1.8.0_73/jre/lib/charsets.jar:/home/tra/gnu/jdk1.8.0_73/jre/lib/jfr.jar:/home/tra/gnu/jdk1.8.0_73/jre/classes
+sun.boot.library.path: /home/tra/gnu/jdk1.8.0_73/jre/lib/amd64
+sun.cpu.endian: little
+sun.cpu.isalist:
+sun.desktop: gnome
+sun.io.unicode.encoding: UnicodeLittle
+sun.java.command: com.intellij.rt.execution.application.AppMain dk.statsbiblioteket.user.tra.apt_poc.poc_tool.Main
+sun.java.launcher: SUN_STANDARD
+sun.jnu.encoding: UTF-8
+sun.management.compiler: HotSpot 64-Bit Tiered Compilers
+sun.os.patch.level: unknown
+user.country: DK
+user.dir: /home/tra/git/apt-poc-java8
+user.home: /home/tra
+user.language: da
+user.name: tra
+user.timezone:
+
+Process finished with exit code 0

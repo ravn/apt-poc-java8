@@ -27,16 +27,16 @@ public class AutonomousPreservationToolTest {
         }
     }
 
-    enum F implements Task<String, String> {
+    enum F implements Task<StringItem, String> {
         F1(s -> s + "1") {
             @Override
-            public String apply(String s) {
+            public String apply(StringItem s) {
                 return null;
             }
         },
         F2(s -> s + "2") {
             @Override
-            public String apply(String s) {
+            public String apply(StringItem s) {
                 return null;
             }
         };

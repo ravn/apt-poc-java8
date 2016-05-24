@@ -14,12 +14,29 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <appassembler-maven-plugin.mainClass>dk.statsbiblioteket.user.tra.apt_poc.poc_tool.Main</appassembler-maven-plugin.mainClass>
+        <appassembler-maven-plugin.mainClass>dk.statsbiblioteket.user.tra.apt_poc.poc_tool.Main
+        </appassembler-maven-plugin.mainClass>
         <appassembler-maven-plugin.id>poc-tool</appassembler-maven-plugin.id>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>dk.statsbiblioteket.newspaper</groupId>
+            <artifactId>item-event-framework-common</artifactId>
+            <version>2.11-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>dk.statsbiblioteket.newspaper</groupId>
+            <artifactId>sboi-doms-event-framework</artifactId>
+            <version>2.11-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.9</version>
+        </dependency>
     </dependencies>
+
     <build>
         <plugins>
             <plugin>
@@ -30,6 +47,20 @@
                     <source>1.8</source>
                     <target>1.8</target>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>com.fizzed</groupId>
+                <artifactId>stork-maven-plugin</artifactId>
+                <version>2.0.1</version>
+                <executions>
+                    <execution>
+                        <id>stork-launcher</id>
+                        <goals>
+                            <goal>launcher</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
 
             <!-- create the deployment layout -->
