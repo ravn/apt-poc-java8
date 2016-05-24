@@ -4,6 +4,12 @@ import dk.statsbiblioteket.medieplatform.autonomous.*;
 
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.Properties;
+
+import static dk.statsbiblioteket.medieplatform.autonomous.ConfigConstants.*;
+import static dk.statsbiblioteket.medieplatform.autonomous.ConfigConstants.DOMS_PIDGENERATOR_URL;
+import static dk.statsbiblioteket.medieplatform.autonomous.ConfigConstants.DOMS_URL;
+import static dk.statsbiblioteket.medieplatform.autonomous.ConfigConstants.DOMS_USERNAME;
 
 /**
  *
@@ -24,7 +30,18 @@ public class Main {
         ItemFactory<Item> itemFactory = id -> new Item(id);
         PremisManipulatorFactory premisManipulatorFactory = new PremisManipulatorFactory<>(PremisManipulatorFactory.TYPE,
                 itemFactory);
-        DomsEventStorage domsEventStorage = null;
+
+        Properties properties = System.getProperties();
+        properties.setProperty("", "");  // add values for below.
+
+        DomsEventStorageFactory<Item> domsEventStorageFactory = new DomsEventStorageFactory<>();
+        domsEventStorageFactory.setFedoraLocation(properties.getProperty(DOMS_URL));
+        domsEventStorageFactory.setPidGeneratorLocation(properties.getProperty(DOMS_PIDGENERATOR_URL));
+        domsEventStorageFactory.setUsername(properties.getProperty(DOMS_USERNAME));
+        domsEventStorageFactory.setPassword(properties.getProperty(DOMS_PASSWORD));
+        domsEventStorageFactory.setItemFactory(itemFactory);
+
+        DomsEventStorage domsEventStorage = domsEventStorageFactory.createDomsEventStorage();
         SBOIEventIndex index = new SBOIEventIndex(
                 summaLocation,
                 premisManipulatorFactory,
