@@ -6,10 +6,8 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Properties;
 
-import static dk.statsbiblioteket.medieplatform.autonomous.ConfigConstants.*;
 import static dk.statsbiblioteket.medieplatform.autonomous.ConfigConstants.DOMS_PIDGENERATOR_URL;
 import static dk.statsbiblioteket.medieplatform.autonomous.ConfigConstants.DOMS_URL;
-import static dk.statsbiblioteket.medieplatform.autonomous.ConfigConstants.DOMS_USERNAME;
 
 /**
  *
@@ -32,13 +30,14 @@ public class Main {
                 itemFactory);
 
         Properties properties = System.getProperties();
-        properties.setProperty("", "");  // add values for below.
+        properties.setProperty(DOMS_PIDGENERATOR_URL, "http://localhost:7880/pidgenerator-service");
+        properties.setProperty(DOMS_URL, "http://localhost:7880/fedora");
 
         DomsEventStorageFactory<Item> domsEventStorageFactory = new DomsEventStorageFactory<>();
         domsEventStorageFactory.setFedoraLocation(properties.getProperty(DOMS_URL));
         domsEventStorageFactory.setPidGeneratorLocation(properties.getProperty(DOMS_PIDGENERATOR_URL));
-        domsEventStorageFactory.setUsername(properties.getProperty(DOMS_USERNAME));
-        domsEventStorageFactory.setPassword(properties.getProperty(DOMS_PASSWORD));
+        //domsEventStorageFactory.setUsername(properties.getProperty(DOMS_USERNAME));
+        //domsEventStorageFactory.setPassword(properties.getProperty(DOMS_PASSWORD));
         domsEventStorageFactory.setItemFactory(itemFactory);
 
         DomsEventStorage domsEventStorage = domsEventStorageFactory.createDomsEventStorage();
