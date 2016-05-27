@@ -27,8 +27,9 @@ public class FileBackedMemoryRepository<T extends FileItem, E extends Event> imp
     Map<T, Set<E>> eventMap = new HashMap<>();
 
     @Override
-    public void add(T item, E event) {
+    public E put(T item, E event) {
         eventMap.computeIfAbsent(item, key -> new HashSet<>()).add(event);
+        return event;
     }
 
     public T get(String id) {

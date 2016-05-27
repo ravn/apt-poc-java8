@@ -1,6 +1,5 @@
 package dk.statsbiblioteket.user.tra.apt;
 
-
 import dk.statsbiblioteket.user.tra.model.*;
 import org.junit.Test;
 
@@ -10,7 +9,7 @@ import java.util.stream.Stream;
 public class T1 {
     @Test
     public void t1() throws Exception {
-        Add repository = new TestRepository();
+        ItemPutter repository = new TestRepository();
 
         Stream<TestItem> stream = Stream.of(new TestItem(repository, "1"), new TestItem(repository, "2"));
 
@@ -19,10 +18,10 @@ public class T1 {
     }
 
     private class TestItem implements Item, Id, EventAdder<TestEvent> {
-        private final Add repository;
+        private final ItemPutter repository;
         private final String id;
 
-        public TestItem(Add repository, String id) {
+        public TestItem(ItemPutter repository, String id) {
             this.repository = repository;
             this.id = id;
         }
@@ -33,8 +32,9 @@ public class T1 {
         }
 
         @Override
-        public void add(TestEvent event) {
-            repository.add(this, event);
+        public boolean add(TestEvent event) {
+            repository.put(this, event);
+            return false;
         }
     }
 
@@ -57,8 +57,9 @@ public class T1 {
 
     private class TestRepository<I extends TestItem, E extends TestEvent, Q> implements Repository<I, E, Q> {
         @Override
-        public void add(I item, E event) {
+        public E put(I item, E event) {
             System.out.println(item + " + " + event);
+            return event;
         }
 
         @Override

@@ -3,7 +3,7 @@ package dk.statsbiblioteket.user.tra.apt_poc.poc_tool;
 import dk.statsbiblioteket.medieplatform.autonomous.*;
 
 import java.util.Arrays;
-import java.util.Iterator;
+import java.util.Date;
 import java.util.Properties;
 
 import static dk.statsbiblioteket.medieplatform.autonomous.ConfigConstants.DOMS_PIDGENERATOR_URL;
@@ -18,7 +18,7 @@ public class Main {
         //new TreeMap(getenv()).forEach((a, b) -> System.out.println(a + ": " + b));
         //new TreeMap(System.getProperties()).forEach((a, b) -> System.out.println(a + ": " + b));
 
-        EventTrigger.Query query = new EventTrigger.Query();
+        EventTrigger.Query<Item> query = new EventTrigger.Query<>();
         //query.getFutureEvents().add("Metadata_Archived");
         query.getPastSuccessfulEvents().add("Data_Received");
 
@@ -48,11 +48,23 @@ public class Main {
                 pageSize
         );
 
-        boolean details = true;
+        // index.search(false, query).forEachRemaining(System.out::println);
+        // index.search(true, query).forEachRemaining(System.out::println);
+        index.search(true, query).forEachRemaining(item -> {
+            System.out.println(item);
+            Date d = appendEventToItem(domsEventStorage, (Item) item);
+            System.out.println(d);
+        });
 
-        Iterator iterator = index.search(details, query);
-        while (iterator.hasNext()) {
-            System.out.println(">> " + iterator.next());
+    }
+
+    private static Date appendEventToItem(DomsEventStorage domsEventStorage, Item item) {
+        try {
+            return domsEventStorage.appendEventToItem(item, "agent", new Date(), "details", "T" + item.getEventList().size(), false);
+        } catch (RuntimeException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 }

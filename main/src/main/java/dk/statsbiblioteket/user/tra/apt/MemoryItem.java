@@ -16,7 +16,7 @@ public class MemoryItem implements Item, Id {
     }
 
     public void add(MemoryEvent event) {
-        repository.add(this, event);
+        repository.put(this, event);
     }
 
     @Override

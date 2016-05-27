@@ -17,8 +17,9 @@ public class MemoryRepository implements Repository<MemoryItem, MemoryEvent, Eve
     Map<MemoryItem, Set<MemoryEvent>> eventMap = new HashMap<>();
 
     @Override
-    public void add(MemoryItem item, MemoryEvent event) {
+    public MemoryEvent put(MemoryItem item, MemoryEvent event) {
         eventMap.computeIfAbsent(item, key -> new HashSet<>()).add(event);
+        return event;
     }
 
     @Override
@@ -37,7 +38,7 @@ public class MemoryRepository implements Repository<MemoryItem, MemoryEvent, Eve
         };
 
         Stream<Stream<MemoryItem>> streamStream = Stream.generate(itemSupplier);
-        Stream<MemoryItem> stream = streamStream.flatMap(x -> x);
+        Stream<MemoryItem> stream = streamStream.flatMap(x -> x);  // flatten streams of streams to single stream
 
         return stream;
     }

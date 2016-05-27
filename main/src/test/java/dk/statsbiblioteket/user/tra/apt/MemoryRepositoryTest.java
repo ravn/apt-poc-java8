@@ -33,8 +33,8 @@ public class MemoryRepositoryTest {
             return TRUE;
         };
 
-        repository.add(new MemoryItem(repository, "ITEM1"), new MemoryEvent(E0));
-        repository.add(new MemoryItem(repository, "ITEM2"), new MemoryEvent(E0));
+        repository.put(new MemoryItem(repository, "ITEM1"), new MemoryEvent(E0));
+        repository.put(new MemoryItem(repository, "ITEM2"), new MemoryEvent(E0));
 
         Callable<Boolean> c0_1 = () -> repository.query(new EventQuery(E0)).map(task12).allMatch(b -> b);
         Callable<Boolean> c1_12 = () -> repository.query(new EventQuery(E0, E1)).map(task23).allMatch(b -> b);

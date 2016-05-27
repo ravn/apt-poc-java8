@@ -5,5 +5,5 @@ import java.util.stream.Stream;
 /**
  *
  */
-public interface Repository<I extends Item, E, Q> extends Add<I, E>, Query<Q, Stream<I>> {
+public interface Repository<I extends Item, E, Q> extends ItemPutter<I, E>, Query<Q, Stream<I>> {
 }
