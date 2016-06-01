@@ -1,13 +1,12 @@
 package dk.statsbiblioteket.user.tra.apt;
 
 import dk.statsbiblioteket.user.tra.model.Event;
-import dk.statsbiblioteket.user.tra.model.Item;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FileItem implements Item<Event> {
+public class FileItem implements dk.statsbiblioteket.user.tra.model.EventAdder<Event> {
 
     protected final Path path;
 

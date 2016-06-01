@@ -29,7 +29,7 @@ public class ConfigurationMap extends TreeMap<String, String> {
     }
 
     /**
-     * ItemPutter those environment variables with the provided keys that actually exist (value != null) to the configuration map.
+     * EventAdderValuePutter those environment variables with the provided keys that actually exist (value != null) to the configuration map.
      */
 
     public void addEnvironmentVariables(String... variableKeys) {

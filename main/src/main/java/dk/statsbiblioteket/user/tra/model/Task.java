@@ -10,6 +10,6 @@ import java.util.function.Function;
  * Exceptions are expected to be caught and handled.
  * If an exception is thrown anyway, it indicates a fatal error and the tool should stop.
  */
-public interface Task<K extends Item, V> extends Function<K, V> {
+public interface Task<K extends EventAdder, V> extends Function<K, V> {
 
 }

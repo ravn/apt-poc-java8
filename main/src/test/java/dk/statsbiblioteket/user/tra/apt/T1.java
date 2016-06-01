@@ -9,7 +9,7 @@ import java.util.stream.Stream;
 public class T1 {
     @Test
     public void t1() throws Exception {
-        ItemPutter repository = new TestRepository();
+        EventAdderValuePutter repository = new TestRepository();
 
         Stream<TestItem> stream = Stream.of(new TestItem(repository, "1"), new TestItem(repository, "2"));
 
@@ -17,11 +17,11 @@ public class T1 {
         stream.map(f).forEach(System.out::println);
     }
 
-    private class TestItem implements Item<TestEvent>, Id, EventAdder<TestEvent> {
-        private final ItemPutter repository;
+    private class TestItem implements Id, EventAdder<TestEvent> {
+        private final EventAdderValuePutter repository;
         private final String id;
 
-        public TestItem(ItemPutter repository, String id) {
+        public TestItem(EventAdderValuePutter repository, String id) {
             this.repository = repository;
             this.id = id;
         }

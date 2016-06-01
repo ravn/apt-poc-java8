@@ -2,7 +2,6 @@ package dk.statsbiblioteket.user.tra.apt;
 
 import dk.statsbiblioteket.user.tra.model.Event;
 import dk.statsbiblioteket.user.tra.model.Id;
-import dk.statsbiblioteket.user.tra.model.Item;
 
 import java.time.Instant;
 import java.util.Objects;
@@ -10,7 +9,7 @@ import java.util.Objects;
 /**
  *
  */
-public class PremisEvent<T extends Item> implements Event, Id {
+public class PremisEvent<T extends dk.statsbiblioteket.user.tra.model.EventAdder> implements Event, Id {
 
     protected T belongsTo;
     protected String id;

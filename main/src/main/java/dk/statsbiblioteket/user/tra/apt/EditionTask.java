@@ -1,8 +1,5 @@
 package dk.statsbiblioteket.user.tra.apt;
 
-import dk.statsbiblioteket.user.tra.model.Item;
-
-import java.io.IOException;
 import java.nio.file.Files;
 import java.util.function.Function;
 

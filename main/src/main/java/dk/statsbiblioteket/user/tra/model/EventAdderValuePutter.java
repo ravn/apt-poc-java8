@@ -1,6 +1,6 @@
 package dk.statsbiblioteket.user.tra.model;
 
-public interface ItemPutter<I extends Item, V> {
+public interface EventAdderValuePutter<I extends EventAdder, V> {
     /** Deliberately same signature as for {@link java.util.Map#put(java.lang.Object, java.lang.Object)} so a Map implementation
      * can implement this interface directly.
      *

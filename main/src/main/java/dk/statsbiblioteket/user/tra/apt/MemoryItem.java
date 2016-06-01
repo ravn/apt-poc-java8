@@ -2,7 +2,6 @@ package dk.statsbiblioteket.user.tra.apt;
 
 import dk.statsbiblioteket.user.tra.model.Event;
 import dk.statsbiblioteket.user.tra.model.Id;
-import dk.statsbiblioteket.user.tra.model.Item;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +9,7 @@ import java.util.List;
 /**
  *
  */
-public class MemoryItem implements Item<Event>, Id {
+public class MemoryItem implements Id, dk.statsbiblioteket.user.tra.model.EventAdder<Event> {
     private final MemoryRepository repository;
     private String id;
 

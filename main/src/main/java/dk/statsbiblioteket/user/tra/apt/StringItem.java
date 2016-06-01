@@ -1,7 +1,6 @@
 package dk.statsbiblioteket.user.tra.apt;
 
 import dk.statsbiblioteket.user.tra.model.Event;
-import dk.statsbiblioteket.user.tra.model.Item;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +8,7 @@ import java.util.List;
 /**
  *
  */
-public class StringItem implements Item<Event> {
+public class StringItem implements dk.statsbiblioteket.user.tra.model.EventAdder<Event> {
 
     List<Event> events = new ArrayList<>();
     private String s;
