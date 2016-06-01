@@ -1,12 +1,16 @@
 package dk.statsbiblioteket.user.tra.apt;
 
+import dk.statsbiblioteket.user.tra.model.Event;
 import dk.statsbiblioteket.user.tra.model.Id;
 import dk.statsbiblioteket.user.tra.model.Item;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  */
-public class MemoryItem implements Item, Id {
+public class MemoryItem implements Item<Event>, Id {
     private final MemoryRepository repository;
     private String id;
 
@@ -27,5 +31,12 @@ public class MemoryItem implements Item, Id {
     @Override
     public String toString() {
         return id;
+    }
+
+    private List<Event> events = new ArrayList<>();
+    @Override
+    public boolean add(Event event) {
+        events.add(event);
+        return true;
     }
 }

@@ -17,7 +17,7 @@ public class T1 {
         stream.map(f).forEach(System.out::println);
     }
 
-    private class TestItem implements Item, Id, EventAdder<TestEvent> {
+    private class TestItem implements Item<TestEvent>, Id, EventAdder<TestEvent> {
         private final ItemPutter repository;
         private final String id;
 
